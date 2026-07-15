@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+/* ---- Bargn AI theme ---------------------------------------------------- */
+:root {
+  --background: #f7f8fa;
+  --surface: #ffffff;
+  --surface-muted: #f1f3f7;
+  --foreground: #12141c;
+  --muted: #5b6172;
+  --border: #e4e7ee;
+  --brand: #4f46e5;
+  --brand-strong: #4338ca;
+  --brand-soft: #eef0fe;
+  --accent: #0ea5a4;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0b0d14;
+    --surface: #12151f;
+    --surface-muted: #1a1e2b;
+    --foreground: #ecedf3;
+    --muted: #9aa1b4;
+    --border: #262b3a;
+    --brand: #7c78ff;
+    --brand-strong: #6a67f0;
+    --brand-soft: #1c1f38;
+    --accent: #2dd4bf;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft: var(--brand-soft);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --animate-fade-in-up: fade-in-up 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-blink: blink 1.2s ease-in-out infinite;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  0%,
+  60%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+}
+
+/* ---- Rendered markdown inside agent bubbles ---------------------------- */
+.markdown > :first-child {
+  margin-top: 0;
+}
+.markdown > :last-child {
+  margin-bottom: 0;
+}
+.markdown p {
+  margin: 0.5rem 0;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4 {
+  margin: 1rem 0 0.5rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.markdown h1 {
+  font-size: 1.25rem;
+}
+.markdown h2 {
+  font-size: 1.15rem;
+}
+.markdown h3 {
+  font-size: 1.05rem;
+}
+.markdown ul,
+.markdown ol {
+  margin: 0.5rem 0;
+  padding-left: 1.35rem;
+}
+.markdown ul {
+  list-style: disc;
+}
+.markdown ol {
+  list-style: decimal;
+}
+.markdown li {
+  margin: 0.2rem 0;
+}
+.markdown li > ul,
+.markdown li > ol {
+  margin: 0.2rem 0;
+}
+.markdown a {
+  color: var(--brand);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.markdown strong {
+  font-weight: 650;
+}
+.markdown em {
+  font-style: italic;
+}
+.markdown blockquote {
+  margin: 0.6rem 0;
+  padding: 0.1rem 0.9rem;
+  border-left: 3px solid var(--border);
+  color: var(--muted);
+}
+.markdown code {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.85em;
+  background: var(--surface-muted);
+  padding: 0.12em 0.38em;
+  border-radius: 0.35rem;
+}
+.markdown pre {
+  margin: 0.6rem 0;
+  padding: 0.85rem 1rem;
+  overflow-x: auto;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+}
+.markdown pre code {
+  background: transparent;
+  padding: 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+.markdown hr {
+  margin: 0.9rem 0;
+  border: none;
+  border-top: 1px solid var(--border);
+}
+.markdown table {
+  margin: 0.6rem 0;
+  border-collapse: collapse;
+  display: block;
+  overflow-x: auto;
+  font-size: 0.85rem;
+}
+.markdown th,
+.markdown td {
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.65rem;
+  text-align: left;
+}
+.markdown th {
+  background: var(--surface-muted);
+  font-weight: 600;
+}
+
+/* Slim, themed scrollbar for the message area */
+.thin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.thin-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.thin-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--border);
+  border-radius: 9999px;
+}
