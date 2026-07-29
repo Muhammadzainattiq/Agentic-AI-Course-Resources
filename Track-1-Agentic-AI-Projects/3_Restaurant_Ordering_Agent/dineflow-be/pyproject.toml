@@ -1,0 +1,43 @@
+[project]
+name = "dineflow-be"
+version = "0.1.0"
+description = "DineFlow — restaurant ordering agent backend (FastAPI + OpenAI Agents SDK)"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "openai-agents>=0.2",
+    "openai>=1.60",
+    "asyncpg>=0.30",
+    "motor>=3.6",
+    "pydantic[email]>=2.9",
+    "pydantic-settings>=2.6",
+    "python-dotenv>=1.0",
+    "httpx>=0.27",
+    "pyjwt>=2.13.0",
+    "bcrypt>=5.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.7",
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint.flake8-bugbear]
+# `Depends(...)` / `Query(...)` in argument defaults is the FastAPI idiom, not a bug.
+extend-immutable-calls = [
+    "fastapi.Depends",
+    "fastapi.Query",
+    "fastapi.Path",
+    "fastapi.Body",
+    "fastapi.Header",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
